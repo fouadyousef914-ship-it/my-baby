@@ -1032,8 +1032,12 @@ function enter() {
     }
     const back = document.createElement('div'); back.className = 'face back';
     const msg = document.createElement('div'); msg.className = 'msg'; msg.textContent = p.msg || '♥';
-    msg.addEventListener('touchstart', e => e.stopPropagation());
-    msg.addEventListener('touchmove', e => e.stopPropagation());
+    
+    // منع انتشار حدث اللمس والسحب تماماً داخل الكلام لضمان السكرول الحر
+    msg.addEventListener('touchstart', e => e.stopPropagation(), {passive: true});
+    msg.addEventListener('touchmove', e => e.stopPropagation(), {passive: true});
+    msg.addEventListener('pointerdown', e => e.stopPropagation());
+
     const more = document.createElement('button');
     more.type = 'button'; more.className = 'more hide'; more.textContent = '⌄'; more.setAttribute('aria-label', 'كمّلي القراءة');
     back.append(msg, more);
