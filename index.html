@@ -64,7 +64,8 @@ button:active{transform:scale(.98)}
   background:var(--rose);color:#fff;font-size:1rem;z-index:3;animation:bob 1.4s ease-in-out infinite}
 .more.hide{display:none}
 @keyframes bob{50%{transform:translateX(-50%) translateY(4px)}}
-
+.back{transform:rotateY(180deg);background:var(--blush);color:#4a1630;padding:26px 22px 48px;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;
+  text-align:center;font-family:'Aref Ruqaa',serif;font-size:1.3rem;line-height:1.9;border:5px solid var(--rose)}
 .letter{margin:46px auto 0;max-width:620px;text-align:center;font-family:'Aref Ruqaa',serif;font-size:1.35rem;line-height:2;
   padding:28px 24px;border-top:2px solid var(--rose);border-bottom:2px solid var(--rose);color:var(--blush)}
 #music{position:fixed;bottom:16px;left:16px;width:48px;height:48px;border-radius:50%;padding:0;z-index:9;font-size:1.2rem}
@@ -297,19 +298,19 @@ button:active{transform:scale(.98)}
   flex-direction:column;
   align-items:stretch;
   justify-content:flex-start;
-  overflow:hidden;
+  overflow: hidden; /* ضروري عشان الكلام مايطلعش بره الحواف */
 }
 
-/* التعديل الجذري والنهائي لحل مشكلة السكرول باللمس داخل الكلام */
+/* حل مشكلة السكرول على الموبايل داخل كارت الذكريات بدقة */
 #main .msg{
-  flex:1;
-  min-height:0;
-  width:100%;
-  overflow-y:auto;
-  -webkit-overflow-scrolling:touch;
-  touch-action:pan-y;
-  overscroll-behavior:contain;
-  scrollbar-width:none;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y; /* بيسمح بسكرول اللمس العمودي فقط جوه الكارت */
+  overscroll-behavior: contain; /* بيمنع هروب السكرول للصفحة الرئيسية */
+  scrollbar-width: none;
 }
 #main .msg::-webkit-scrollbar{display:none}
 
@@ -443,12 +444,14 @@ button:active{transform:scale(.98)}
 .vtime{color:#7a5a4a}
 @media (prefers-reduced-motion:reduce){.env-card,.env-heart,.env-flap{transition:none}}
 
+/* شريط التمرير الدهبي الرفيع للورقة */
 .paper-body{scrollbar-width:thin;scrollbar-color:#c6a078 transparent}
 .paper-body::-webkit-scrollbar{width:6px}
 .paper-body::-webkit-scrollbar-track{background:transparent;margin:6px 0}
 .paper-body::-webkit-scrollbar-thumb{background:linear-gradient(#d8b98f,#b98a57);border-radius:999px}
 .paper-body::-webkit-scrollbar-button{display:none}
 
+/* شريط التمرير الرئيسي للصفحة: رفيع ودهبي ناعم */
 html{scrollbar-width:thin;scrollbar-color:#c6a078 rgba(20,5,14,.25)}
 ::-webkit-scrollbar{width:8px;height:8px}
 ::-webkit-scrollbar-track{background:rgba(20,5,14,.25)}
@@ -505,12 +508,15 @@ html{scrollbar-width:thin;scrollbar-color:#c6a078 rgba(20,5,14,.25)}
 #main .back::before{content:"✦ ♥ ✦";position:absolute;top:13px;left:0;right:0;text-align:center;color:#c6a078;font:.7rem 'Cairo',sans-serif;letter-spacing:6px}
 @media (prefers-reduced-motion:reduce){.card.rv{opacity:1;translate:none}}
 
+/* ألوان النصوص = لون "ألبوم ذكرياتنا" الدهبي */
 #main h2,.env-hint,#main .hint{color:#f3dfb7}
 .env-hint{opacity:1}
+/* زرار الصوت والسهم: المربع كله يشتغل (الضغطة كانت بتزحزح الزرار فالضغطة بتروح للكارت) */
 #main .snd{padding:7px 20px;bottom:5px}
 #main .snd:active{transform:translateX(-50%) scale(.97)}
 .more:active{transform:translateX(-50%) scale(.95)}
 
+/* الوش اللي مش ظاهر من الكارت ميستقبلش ضغطات (زرار الصوت كان بيشتغل من ورا السهم) */
 .card.flip .front,.card.flip .front *{pointer-events:none}
 .card:not(.flip) .back,.card:not(.flip) .back *{pointer-events:none}
 
@@ -540,9 +546,11 @@ html{scrollbar-width:thin;scrollbar-color:#c6a078 rgba(20,5,14,.25)}
 .end-top{width:auto;margin-top:20px;padding:8px 22px;border-radius:999px;background:transparent;color:#f3dfb7;border:1px solid rgba(240,214,170,.6);font-size:.85rem}
 @media (prefers-reduced-motion:reduce){.ending .rl{opacity:1;transform:none}.ending.play .rl{animation:none}.end-heart{animation:none}}
 
+/* الرسالة الأخيرة: بالإنجليزي وبنفس الدهبي */
 #main .ending .letter{color:#f3dfb7;unicode-bidi:plaintext;font-family:'Cormorant Garamond','Aref Ruqaa',serif;font-style:italic;font-weight:600;
   font-size:clamp(1.45rem,4.2vw,2rem);line-height:1.8}
 
+/* ===== رسالة على ورق قديم (حواف مقطّعة + بقع وردي + قلوب دهب + وردة) ===== */
 .paper-shadow{width:min(560px,100%);max-height:88vh;display:flex;filter:drop-shadow(0 22px 30px rgba(20,5,14,.55))}
 .paper{--gh:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23fff0c4'/%3E%3Cstop offset='.5' stop-color='%23e0b860'/%3E%3Cstop offset='1' stop-color='%23a97b2e'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23g)' d='M12 21s-7.5-4.6-9.5-9.2C1 8 3.3 4.5 6.8 4.5c2 0 3.7 1.1 5.2 3 1.5-1.9 3.2-3 5.2-3 3.5 0 5.8 3.5 4.3 7.3C19.5 16.4 12 21 12 21z'/%3E%3C/svg%3E");--ra:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 84'%3E%3Cpath d='M30 40c-1 14 2 26 4 42' stroke='%233a2a22' stroke-width='2.2' fill='none'/%3E%3Cpath d='M33 62c8-4 14-2 18-8-8-1-15 1-18 8z' fill='%234a7a4f' stroke='%233a2a22' stroke-width='1.2'/%3E%3Cpath d='M31 56c-7-5-14-4-17-10 8-1 14 1 17 10z' fill='%234a7a4f' stroke='%233a2a22' stroke-width='1.2'/%3E%3Ccircle cx='30' cy='26' r='17' fill='%23f3b8c8' stroke='%233a2a22' stroke-width='1.6'/%3E%3Cpath d='M30 26m-3 0a3 3 0 1 1 6 0 6 6 0 1 1-12 0 9 9 0 1 1 18 0' fill='none' stroke='%23c96b86' stroke-width='1.5'/%3E%3C/svg%3E");width:100%;border:0;outline:0;border-radius:0;box-shadow:inset 0 0 46px rgba(150,95,45,.3),inset 0 0 6px rgba(120,70,30,.35);
   clip-path:polygon(0% 1.6px,5% 0.8px,10% 3.3px,15% 0.4px,20% 2.7px,25% 1.8px,30% 0.3px,35% 2.5px,40% 0.2px,45% 2.2px,50% 0.3px,55% 0.5px,60% 2.1px,65% 4.1px,70% 0.6px,75% 1.1px,80% 3.1px,85% 4.7px,90% 2.9px,95% 2.0px,100% 4.9px,calc(100% - 0.2px) 4%,calc(100% - 4.3px) 8%,calc(100% - 1.4px) 12%,calc(100% - 0.7px) 16%,calc(100% - 0.6px) 20%,calc(100% - 1.5px) 24%,calc(100% - 4.1px) 28%,calc(100% - 0.9px) 32%,calc(100% - 2.9px) 36%,calc(100% - 3.2px) 40%,calc(100% - 1.9px) 44%,calc(100% - 2.7px) 48%,calc(100% - 0.3px) 52%,calc(100% - 0.3px) 56%,calc(100% - 1.0px) 60%,calc(100% - 3.4px) 64%,calc(100% - 2.1px) 68%,calc(100% - 1.6px) 72%,calc(100% - 2.9px) 76%,calc(100% - 2.3px) 80%,calc(100% - 1.5px) 84%,calc(100% - 4.0px) 88%,calc(100% - 3.5px) 92%,calc(100% - 1.2px) 96%,100% calc(100% - 2.9px),95% calc(100% - 2.6px),90% calc(100% - 4.4px),85% calc(100% - 3.6px),80% calc(100% - 1.4px),75% calc(100% - 4.9px),70% calc(100% - 0.6px),65% calc(100% - 2.1px),60% calc(100% - 3.8px),55% calc(100% - 0.8px),50% calc(100% - 2.4px),45% calc(100% - 0.2px),40% calc(100% - 3.3px),35% calc(100% - 3.8px),30% calc(100% - 2.9px),25% calc(100% - 4.4px),20% calc(100% - 1.6px),15% calc(100% - 3.5px),10% calc(100% - 3.0px),5% calc(100% - 2.9px),0% calc(100% - 2.3px),4.2px 96%,4.7px 92%,2.4px 88%,3.3px 84%,0.3px 80%,3.5px 76%,3.2px 72%,5.0px 68%,4.1px 64%,1.4px 60%,1.9px 56%,3.3px 52%,0.1px 48%,2.3px 44%,0.8px 40%,0.6px 36%,0.3px 32%,3.8px 28%,0.6px 24%,1.2px 20%,2.0px 16%,4.4px 12%,0.4px 8%,2.2px 4%);color:#4a2a35;
@@ -560,6 +568,7 @@ html{scrollbar-width:thin;scrollbar-color:#c6a078 rgba(20,5,14,.25)}
 .paper-body{color:#4a2a35}
 .paper-body::after{padding-bottom:66px;background:var(--ra) no-repeat 50% 100%/40px auto}
 
+/* ===== الموبايل: كل صورتين جنب بعض ===== */
 @media(max-width:650px){
   #main .grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important}
   #main .card{height:clamp(215px,60vw,300px)!important}
@@ -571,6 +580,7 @@ html{scrollbar-width:thin;scrollbar-color:#c6a078 rgba(20,5,14,.25)}
   .more{width:30px;height:30px;bottom:6px;font-size:.9rem}
 }
 
+/* ===== Open When: ظروف صغيرة ===== */
 .ow{margin:58px auto 0;text-align:center}
 .ow-hint{margin-top:6px;color:#f3dfb7;font-size:.9rem;opacity:.9}
 .ow-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px 20px;max-width:760px;margin:24px auto 0}
@@ -595,6 +605,7 @@ html{scrollbar-width:thin;scrollbar-color:#c6a078 rgba(20,5,14,.25)}
 @media(max-width:650px){.ow-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 12px}.ow-label{font-size:.85rem}}
 @media (prefers-reduced-motion:reduce){.ow-flap,.ow-paper,.ow-seal{transition:none}.ow-item:hover .ow-env{animation:none}}
 
+/* ===== One Day, Someday, Today ===== */
 @property --a{syntax:'<angle>';initial-value:0deg;inherits:false}
 .dr-sec{position:relative;margin:76px auto 0;text-align:center}
 .dr-petals{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
@@ -675,6 +686,7 @@ html{scrollbar-width:thin;scrollbar-color:#c6a078 rgba(20,5,14,.25)}
 }
 @media (prefers-reduced-motion:reduce){.petal{display:none}.dr-item{opacity:1;translate:none}.dr-forever::before,.dr-inf{animation:none}.dr-item.in .dr-track li.on{animation:none}.dr-bar i{transition:none}}
 
+/* ===== 100 Reasons ===== */
 .rs{position:relative;margin:76px auto 0;text-align:center}
 .rs-hero h3{margin:8px 0 0;direction:ltr;font:italic 700 clamp(2.6rem,10vw,4.6rem)/1.05 'Cormorant Garamond',serif;
   background:linear-gradient(180deg,#fdebc6,#dcb270 55%,#b8864a);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 3px 8px rgba(0,0,0,.4))}
@@ -711,7 +723,7 @@ html{scrollbar-width:thin;scrollbar-color:#c6a078 rgba(20,5,14,.25)}
 .rs-h.wave{animation:rsWave .6s ease both;animation-delay:calc(var(--i) * 18ms)}
 @keyframes rsWave{50%{transform:scale(1.4);color:#fff}}
 .rs-reset{width:auto;margin-top:14px;padding:4px 12px;border:0;background:none;color:#c9b08a;font-size:.8rem;text-decoration:underline}
-
+/* الرسالة الأخيرة */
 .fl-ov{position:fixed;inset:0;z-index:70;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(14,3,10,.8);
   backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;visibility:hidden;transition:opacity .8s,visibility 0s .8s}
 .fl-ov.show{opacity:1;visibility:visible;transition:opacity .8s}
@@ -733,6 +745,7 @@ html{scrollbar-width:thin;scrollbar-color:#c6a078 rgba(20,5,14,.25)}
 @media(max-width:650px){.rs-card{min-height:270px;padding:30px 18px 26px}.rs-grid{gap:4px}}
 @media (prefers-reduced-motion:reduce){.rs-card.in,.rs-h.wave,.rs-next.final,.rs-heart,.rs-empty .rs-num{animation:none}.fl-line{opacity:1;transform:none}.fl-ov.show .fl-line{animation:none}.fl-paper{transition:none}}
 
+/* ===== موقع متعدد الصفحات: تنقل + مقدمة + بريق ===== */
 .pg{display:none}
 .pg.on{display:block;animation:pgIn .7s ease both}
 @keyframes pgIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
@@ -945,15 +958,18 @@ if (typeof CONFIG === 'undefined') {
 const $ = id => document.getElementById(id);
 const norm = s => s.trim().toLowerCase();
 
+// قوائم الخلفيات والأغاني (من config.js) - بتشتغل كمان لو كاتب mainBackground / song القديمين
 const bgList = (CONFIG.backgrounds && CONFIG.backgrounds.length) ? CONFIG.backgrounds : (CONFIG.mainBackground ? [CONFIG.mainBackground] : []);
 const songList = (CONFIG.songs && CONFIG.songs.length ? CONFIG.songs : [CONFIG.song]).map((x, i) => typeof x === 'string' ? { src: x, name: 'أغنية ' + (i + 1) } : x);
 
+// فيديو خلفية الصفحة الرئيسية
 if (bgList.length) {
   const bv = $('bgVideo'); bv.muted = true;
   bv.onerror = () => { bv.dataset.bad = 1; bv.classList.add('hidden'); $('bgShade').classList.add('hidden'); };
   bv.src = bgList[0];
 }
 
+// صورة الخلفية (لو الصورة مش موجودة هتفضل الخلفية بالتدرج)
 const isVideo = f => /\.(mp4|webm|mov|m4v)$/i.test(f);
 if (isVideo(CONFIG.coverPhoto)) {
   const v = document.createElement('video');
@@ -997,6 +1013,8 @@ function enter() {
   new IntersectionObserver((l, o) => l.forEach(e => { if (e.isIntersecting) { $('ending').classList.add('play'); o.disconnect(); } }), { threshold: .3 }).observe($('ending'));
   $('endTop').addEventListener('click', () => go('home', true));
 
+
+  // الفيديو بيتحمّل ويشتغل بس وهو ظاهر على الشاشة (عشان الموبايل ميبقاش تقيل)
   const vidObserver = new IntersectionObserver(list => list.forEach(en => {
     const v = en.target;
     if (en.isIntersecting) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); }
@@ -1032,6 +1050,7 @@ function enter() {
     const back = document.createElement('div'); back.className = 'face back';
     const msg = document.createElement('div'); msg.className = 'msg'; msg.textContent = p.msg || '♥';
     
+    // منع تداخل السكرول تماماً مع الصفحة الأساسية وخلي السكرول جوه الكلام بس بصباعك
     msg.addEventListener('touchstart', e => { e.stopPropagation(); }, {passive: true});
     msg.addEventListener('touchmove', e => { e.stopPropagation(); }, {passive: true});
     msg.addEventListener('pointerdown', e => e.stopPropagation());
@@ -1061,7 +1080,7 @@ function enter() {
   });
 
   $('audio').src = songList[0].src; $('audio').volume = .8;
-  $('audio').play().catch(() => {});
+  $('audio').play().catch(() => {});   // الأغنية بتشتغل أول ما تدخل
   initDock();
   setInterval(spawnHeart, 700);
   initEnvelope(letterText);
@@ -1073,6 +1092,7 @@ function enter() {
   startClock();
 }
 
+// صوت الفيديوهات: فيديو واحد بس بصوت، والأغنية بتقف وهو شغال وترجع بعده
 let activeVid = null, songWasOn = false;
 function setBtn(v, on) { if (v && v._btn) v._btn.textContent = on ? '🔊 اقفلي الصوت' : '🔇 شغّلي الصوت'; }
 function toggleSound(v, btn) {
@@ -1093,6 +1113,7 @@ $('music').addEventListener('click', () => {
   const a = $('audio'); a.paused ? a.play() : a.pause();
 });
 
+// قلوب تطلع مع كل ضغطة (وكل ما تدوس ورا بعض بتطلع قلوب جديدة)
 document.addEventListener('pointerdown', e => {
   const n = 6;
   for (let i = 0; i < n; i++) {
@@ -1108,10 +1129,11 @@ document.addEventListener('pointerdown', e => {
   }
 });
 
+// الظرف: يتهز، يتفتح بورد، وزرار يشغل الأغنية ويطلع الورقة
 function initEnvelope(text) {
   const env = $('env'), btn = $('readBtn'), paper = $('paper');
   $('paperTitle').textContent = CONFIG.title;
-  if (CONFIG.envelopePhoto) {
+  if (CONFIG.envelopePhoto) {   // صورة مدورة في نص الظرف (اختياري)
     const im = $('envPhoto');
     im.onload = () => { im.classList.remove('hidden'); env.classList.add('has-photo'); env.parentNode.classList.add('has-photo'); };
     im.src = CONFIG.envelopePhoto;
@@ -1121,7 +1143,7 @@ function initEnvelope(text) {
     env.classList.remove('open'); btn.classList.remove('show'); btn.disabled = true;
     $('envHint').textContent = 'دوسي على الظرف 💌';
   };
-  const openEnv = () => {
+  const openEnv = () => {   // الضغط على الظرف بيفتحه، والضغط عليه وهو مفتوح بيقفله
     if (env.classList.contains('open')) { closeEnv(); return; }
     env.classList.add('open');
     btn.classList.add('show'); btn.disabled = false;
@@ -1157,6 +1179,7 @@ function initEnvelope(text) {
   document.addEventListener('keydown', ev => { if (ev.key === 'Escape' && paper.classList.contains('show')) close(); });
 }
 
+// ساعة حبنا: سنين/شهور/أيام + ساعة حية، وتحتها تاريخ اللقاء والإجمالي
 function startClock() {
   const [sy, sm, sd] = CONFIG.startDate.split('-').map(Number);
   const p2 = n => String(n).padStart(2, '0');
@@ -1189,6 +1212,7 @@ function startClock() {
   tick(); setInterval(tick, 1000);
 }
 
+// أزرار اليمين: مكعبات لتغيير الخلفية والأغنية
 function setBg(i) {
   const bv = $('bgVideo');
   delete bv.dataset.bad; bv.classList.remove('hidden'); $('bgShade').classList.remove('hidden');
@@ -1230,7 +1254,7 @@ function initDock() {
   build('dkSong', 'cubesSong', songList.length, (c, i) => {
     c.textContent = '🎵\n' + (i + 1); c.title = songList[i].name; c.setAttribute('aria-label', songList[i].name);
   }, i => {
-    if (activeVid) toggleSound(activeVid);
+    if (activeVid) toggleSound(activeVid);   // لو فيديو صوته شغال نقفله
     $('voiceAudio').pause();
     const a = $('audio'); a.src = songList[i].src; a.play().catch(() => {});
   }, i => songList[i].name);
@@ -1239,6 +1263,7 @@ function initDock() {
   });
 }
 
+// الرسالة الصوتية جوه الورقة: زرار تشغيل/إيقاف + شريط موجات + وقت
 function initVoice() {
   if (!CONFIG.voiceNote) return;
   const au = $('voiceAudio'), wrap = $('voiceWrap'), box = $('voice'), btn = $('vPlay'), wave = $('wave'), time = $('vTime');
@@ -1260,15 +1285,15 @@ function initVoice() {
   });
   btn.addEventListener('click', () => {
     if (au.paused) {
-      if (activeVid) toggleSound(activeVid);
-      const a = $('audio'); songWas = !a.paused; a.pause();
+      if (activeVid) toggleSound(activeVid);            // نقفل صوت أي فيديو
+      const a = $('audio'); songWas = !a.paused; a.pause();   // نوقف الأغنية وهي بتسمع الرسالة
       au.play().catch(() => {});
     } else au.pause();
   });
   au.addEventListener('play', () => { box.classList.add('playing'); btn.textContent = '⏸'; btn.setAttribute('aria-label', 'وقّفي الرسالة'); });
   au.addEventListener('pause', () => {
     box.classList.remove('playing'); btn.textContent = '▶'; btn.setAttribute('aria-label', 'شغّلي الرسالة');
-    if (songWas) { songWas = false; $('audio').play().catch(() => {}); }
+    if (songWas) { songWas = false; $('audio').play().catch(() => {}); }   // الأغنية ترجع بعد الرسالة
   });
   au.addEventListener('ended', () => { bars.forEach(b => b.classList.remove('on')); time.textContent = fmt(au.duration); });
   wave.addEventListener('pointerdown', ev => {
@@ -1277,6 +1302,7 @@ function initVoice() {
   });
 }
 
+// "افتحيه لما…": ظروف صغيرة، كل ظرف بيفتح ورقة برسالة
 function initOpenWhen() {
   const list = CONFIG.openWhen || window.OPEN_WHEN || [];
   if (!list.length) { $('ow').classList.add('hidden'); return; }
@@ -1310,6 +1336,7 @@ function initOpenWhen() {
   document.addEventListener('keydown', ev => { if (ev.key === 'Escape' && ov.classList.contains('show')) close(); });
 }
 
+// One Day, Someday, Today: خط زمني دهبي بأحلامكم
 function initDreams() {
   const D = CONFIG.dreams || window.DREAMS;
   if (!D || !D.items || !D.items.length) { $('dr').classList.add('hidden'); return; }
@@ -1349,7 +1376,7 @@ function initDreams() {
   new IntersectionObserver((l, o) => l.forEach(e => {
     if (e.isIntersecting) { $('drBar').style.width = Math.max(4, done / D.items.length * 100) + '%'; o.disconnect(); }
   })).observe($('drBar'));
-
+  // بتلات ورد بتنزل بهدوء ورا القسم
   const h = $('dr').offsetHeight + 60, box = $('drPetals');
   for (let i = 0; i < 16; i++) {
     const p = mk('span', 'petal', ['🌸', '🌹', '🌷', '🌸'][i % 4]);
@@ -1360,6 +1387,7 @@ function initDreams() {
   }
 }
 
+// 100 سبب: كارت لكل سبب، كل ضغطة بتكشف سبب جديد، وبعد المية بتظهر الرسالة الأخيرة
 function parseReasons(t) {
   const items = [], chapters = [];
   t.split(/\r?\n/).forEach(line => {
@@ -1440,6 +1468,7 @@ function initReasons() {
   });
   render(false);
 
+  // الرسالة الأخيرة
   const ov = $('flOv'), box = $('flText');
   const lines = (window.REASONS_FINAL || '').split(/\r?\n/).map(x => x.trim()).filter(Boolean);
   lines.forEach((t, i) => {
@@ -1465,6 +1494,7 @@ function initReasons() {
   document.addEventListener('keydown', ev => { if (ev.key === 'Escape' && ov.classList.contains('show')) closeFinal(); });
 }
 
+// ===== مقدمة سينمائية بعد الدخول =====
 function playIntro() {
   const el = $('intro'); if (!el) return;
   if (CONFIG.endNames) $('introNames').textContent = CONFIG.endNames; else $('introNames').classList.add('hidden');
@@ -1474,6 +1504,7 @@ function playIntro() {
   el.addEventListener('click', () => { clearTimeout(t); end(); });
 }
 
+// ===== صفحات الموقع =====
 const PAGES = [['home', '🏠', 'الرئيسية'], ['memories', '📸', 'ذكرياتنا'], ['letters', '💌', 'رسائل'], ['reasons', '💗', '100 سبب'], ['dreams', '💍', 'أحلامنا'], ['forever', '♾️', 'النهاية']];
 function go(name, push) {
   if (!PAGES.some(p => p[0] === name)) name = 'home';
@@ -1507,6 +1538,7 @@ function initNav() {
   go(location.hash.slice(1), false);
 }
 
+// ===== بريق دهبي ورا الماوس (على الكمبيوتر) =====
 let lastSpark = 0;
 document.addEventListener('pointermove', ev => {
   if (ev.pointerType !== 'mouse' || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
