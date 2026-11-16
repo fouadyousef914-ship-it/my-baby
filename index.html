@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>لحبيبتي چوني♥</title>
+<title>لحبيبتي جوني♥</title>
 <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;600&family=Cormorant+Garamond:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
 <style>
 :root{--plum:#2a1020;--rose:#e86a8a;--blush:#ffe3e8;--gold:#f2c078;--text:#fff6f3}
@@ -763,6 +763,15 @@ html{scrollbar-width:thin;scrollbar-color:#c6a078 rgba(20,5,14,.25)}
 @keyframes spk{to{opacity:0;transform:translate(calc(-50% + var(--sx)),calc(-50% + 26px)) scale(.3) rotate(120deg)}}
 @media (prefers-reduced-motion:reduce){.pg.on{animation:none}.intro *{animation-duration:.01s!important;animation-delay:0s!important}}
 
+/* ===== إصلاحات الموبايل ===== */
+*{-webkit-tap-highlight-color:transparent}
+button,.card,.cube,.ow-item,.dr-card,.rs-h,.nav button{touch-action:manipulation}
+#main .card.settled .inner{transform:none;transition:none;transform-style:flat;-webkit-transform-style:flat}
+#main .card.settled .front{display:none}
+#main .card.settled .back{transform:none}
+#main .card.unsettling .inner{transition:none}
+.msg{touch-action:pan-y;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+
 </style>
 </head>
 <body>
@@ -774,7 +783,7 @@ html{scrollbar-width:thin;scrollbar-color:#c6a078 rgba(20,5,14,.25)}
     <p>وحشتيني يا قمر... وريني شطارتك وخمّني الاسم والباسورد، مستنياكي مفاجأة صغيرة 😉</p>
     <input id="name" placeholder="اسم الدلع بتاعك 🥰" aria-label="اسم الدلع">
     <input id="pass" type="password" placeholder="الباسورد يا شطورة 😍" aria-label="الباسورد">
-    <button type="submit">خش هتجيبك ي شبل😉 ♥</button>
+    <button type="submit">يلا ادخلي يا قلبي ♥</button>
     <div id="err" role="alert"></div>
   </form>
 </section>
@@ -799,13 +808,13 @@ html{scrollbar-width:thin;scrollbar-color:#c6a078 rgba(20,5,14,.25)}
       </div>
       <button type="button" class="read" id="readBtn" disabled>🎵 افتحي رسالتي</button>
     </div>
-    <p class="env-hint" id="envHint">دوسي على الظرف ي دلوعت بابا💌</p>
+    <p class="env-hint" id="envHint">دوسي على الظرف 💌</p>
   </section>
 
   <section class="clock" aria-label="ساعة حبنا">
     <h3>⏳ ساعة حبنا</h3>
     <div class="tiles" id="tiles"></div>
-    <p class="lbl">يوم ارتباطي ب الكتكوته بتاعتي🔒✨</p>
+    <p class="lbl">اتقابلنا يوم</p>
     <div class="tiles met" id="met"></div>
     <p class="total" id="total"></p>
   </section>
@@ -1046,7 +1055,18 @@ function enter() {
     const inner = document.createElement('div'); inner.className = 'inner';
     inner.append(front, back); c.appendChild(inner);
     const toggle = () => {
-      c.classList.toggle('flip');
+      clearTimeout(c._t);
+      if (c.classList.contains('flip')) {
+        // نرجّع التأثير ثلاثي الأبعاد الأول من غير حركة، وبعدين نقلب
+        if (c.classList.contains('settled')) {
+          c.classList.remove('settled'); c.classList.add('unsettling'); void c.offsetWidth;
+          c.classList.remove('unsettling'); void c.offsetWidth;
+        }
+        c.classList.remove('flip');
+      } else {
+        c.classList.add('flip');
+        c._t = setTimeout(() => c.classList.add('settled'), 900);   // بعد ما القلب يخلص نشيل الـ3D عشان السكرول باللمس يشتغل
+      }
       const v = c.querySelector('video');
       if (v && !v.muted) toggleSound(v, v._btn);
     };
